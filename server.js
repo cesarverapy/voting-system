@@ -7,6 +7,8 @@ app.use(express.urlencoded({
     extended:true
 })); 
 
+app.set('view engine', 'ejs');
+
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 });
