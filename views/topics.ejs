@@ -1,0 +1,44 @@
+<h1>Lista de Temas</h1>
+<ul id="topics-list">
+    <% topics.forEach(topic => { %>
+        <li id="topic-<%= topic.id %>">
+            <%= topic.name %> - Votos: <span class="votes"><%= topic.votes %></span>
+            
+            <button onclick="vote('<%= topic.id %>')">vote for this topic</button>
+
+            <button onclick="deleteTopic('<%= topic.id %>')">delete this topic</button>
+
+            <button onclick="editTopic('<%= topic.id %>')">edit this topic</button>
+        </li>
+    <% }) %>
+</ul>
+
+<script>
+    async function vote(id) {
+        const response = await fetch(`/topics/${id}/vote`, { method: 'POST' });
+        if (response.ok) {
+            location.reload();
+        }
+    }
+
+    async function deleteTopic(id) {
+        const response = await fetch(`/topics/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+            location.reload();
+        }
+    }
+
+    async function editTopic(id) {
+        const newName = prompt("Ingrese el nuevo nombre del tema:");
+        if (newName) {
+            const response = await fetch(`/topics/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: newName })
+            });
+            if (response.ok) {
+                location.reload();
+            }
+        }
+    }
+</script>
