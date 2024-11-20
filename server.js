@@ -9,6 +9,8 @@ app.use(express.urlencoded({
 
 app.set('view engine', 'ejs');
 
+require('./controllers/topicsController')(app);
+
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 });
