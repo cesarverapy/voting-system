@@ -56,4 +56,4 @@ const TopicModel = {
     },
 };
 
-module.exports = { TopicModel };
+module.exports = { Topic, TopicModel };
