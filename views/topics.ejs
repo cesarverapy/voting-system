@@ -3,21 +3,26 @@
     <% topics.forEach(topic => { %>
         <li id="topic-<%= topic.id %>">
             <%= topic.name %> - Votos: <span class="votes"><%= topic.votes %></span>
-            
+
             <button onclick="vote('<%= topic.id %>')">vote for this topic</button>
-
             <button onclick="deleteTopic('<%= topic.id %>')">delete this topic</button>
-
             <button onclick="editTopic('<%= topic.id %>')">edit this topic</button>
         </li>
     <% }) %>
 </ul>
 
+<form id="add-topic-form">
+    <input type="text" id="new-topic-name" placeholder="new topic" required />
+    <button type="submit">add topic</button>
+</form>
+
 <script>
     async function vote(id) {
-        const response = await fetch(`/topics/${id}/vote`, { method: 'POST' });
+        const response = await fetch(`/topics/${id}/votes`, { method: 'POST' });
         if (response.ok) {
             location.reload();
+        } else {
+            alert('Failed to vote for this topic');
         }
     }
 
@@ -25,20 +30,42 @@
         const response = await fetch(`/topics/${id}`, { method: 'DELETE' });
         if (response.ok) {
             location.reload();
+        } else {
+            alert('Failed to delete this topic');
         }
     }
 
     async function editTopic(id) {
-        const newName = prompt("Ingrese el nuevo nombre del tema:");
+        const newName = prompt("Enter the new name for the topic:"); // Prompt the user for a new name
         if (newName) {
             const response = await fetch(`/topics/${id}`, {
-                method: 'PUT',
+                method: 'PUT', // Use PUT method
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: newName })
+                body: JSON.stringify({ name: newName }) // Send the new name as JSON
             });
             if (response.ok) {
-                location.reload();
+                location.reload(); // Reload the page to reflect the changes
+            } else {
+                const errorMessage = await response.text();
+                alert(`Failed to update topic: ${errorMessage}`);
             }
         }
     }
+
+    document.getElementById('add-topic-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const newTopicName = document.getElementById('new-topic-name').value.trim();
+        if (newTopicName) {
+            const response = await fetch('/topics', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: newTopicName })
+            });
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Failed to add topic');
+            }
+        }
+    });
 </script>
