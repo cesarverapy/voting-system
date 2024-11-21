@@ -1,4 +1,5 @@
 const express = require("express");
+const topicRoutes = require('./routes/routes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -8,7 +9,7 @@ app.use(express.urlencoded({
 })); 
 
 app.set('view engine', 'ejs');
-require('./controllers/topicsController')(app);
+app.use('/', topicRoutes);
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
