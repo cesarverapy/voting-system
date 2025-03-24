@@ -61,25 +61,6 @@ voting-system/
    ```
    http://localhost:3000/topics
    ```
-
----
-
-## File Descriptions
-
-### `server.js`
-- Configures the Express app and integrates the controller.
-
-### `controllers/topicsController.js`
-- Handles routing and business logic for topics.
-- Implements CRUD operations and voting functionality.
-
-### `models/topic.js`
-- Provides an in-memory data model to store topics.
-
-### `views/topics.ejs`
-- Renders the topics list dynamically.
-- Includes buttons for voting, editing, and deleting topics.
-
 ---
 
 ## Example Data
