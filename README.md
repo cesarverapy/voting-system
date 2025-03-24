@@ -1,6 +1,6 @@
 # Voting System
 
-This project is a simple **voting system** built with **Node.js**, **Express**, and **EJS**. It allows users to manage a list of topics (CRUD) and vote for their favorites, dynamically reordering topics based on the number of votes.
+This project is a simple **voting system** built with **Node.js** and **Express**. It allows users to manage a list of topics (CRUD) and vote for their favorites, dynamically reordering topics based on the number of votes.
 
 ---
 
@@ -36,13 +36,6 @@ voting-system/
 │   └── topics.ejs            # Template for displaying and interacting with topics
 └── server.js                 # Main server file with Express configuration
 ```
-
----
-
-## Prerequisites
-
-- **Node.js** (v14 or later)
-- **npm** (Node Package Manager)
 
 ---
 
