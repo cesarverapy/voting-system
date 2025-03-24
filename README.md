@@ -64,20 +64,6 @@ voting-system/
 
 ---
 
-## Usage
-
-### Endpoints
-
-| Method | Endpoint           | Description                 |
-|--------|--------------------|-----------------------------|
-| GET    | `/topics`          | View all topics            |
-| POST   | `/topics`          | Create a new topic         |
-| PUT    | `/topics/:id`      | Update an existing topic   |
-| DELETE | `/topics/:id`      | Delete a topic             |
-| POST   | `/topics/:id/vote` | Vote for a topic           |
-
----
-
 ## File Descriptions
 
 ### `server.js`
@@ -118,6 +104,7 @@ voting-system/
 ## Future Improvements
 
 - Integrate a database for persistent storage (e.g., MongoDB, PostgreSQL).
+- Add API contracts.
 - Add user authentication for managing topics.
 - Implement real-time updates using WebSockets.
 
